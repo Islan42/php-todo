@@ -23,7 +23,7 @@ class Router {
 	public function route($uri, $method){
 		foreach($this -> routes as $route){
 			if($route['uri'] === $uri && $route['method'] === $method){
-				return require base_dir($route['controller']);
+				return require base_dir('Http/controllers/' . $route['controller']);
 			}
 		}
 		abort();

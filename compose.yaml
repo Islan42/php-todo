@@ -5,3 +5,19 @@ services:
             - .:/var/www/html
         ports: 
             - 80:80
+    mysql:
+        image: mysql
+        volumes:
+            - app-db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: app-db
+    phpma:
+        image: phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: mysql
+
+volumes:
+    app-db:
