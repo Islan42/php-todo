@@ -20,4 +20,5 @@ function view($path, $params = []){
 function abort($code = 404){
 	http_response_code($code);
 	view("{$code}.view.php");
+	die();
 }

@@ -1,3 +1,3 @@
 <?php
 
-echo 'Sessions Create';
+view('sessions/create.view.php');

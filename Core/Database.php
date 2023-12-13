@@ -18,8 +18,17 @@ class Database {
 		return $this;
 	}
 	
-	public function fetch(){
+	public function find(){
 		return $this -> statement -> fetch();
+	}
+	public function findOrFail(){
+		$value = $this -> find();
+		
+		if(! $value){
+			abort();
+		}
+		
+		return $value;
 	}
 	
 	public function fetchAll(){

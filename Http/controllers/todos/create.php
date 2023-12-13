@@ -1,3 +1,3 @@
 <?php
 
-echo 'Todos Create';
+view('todos/create.view.php');
