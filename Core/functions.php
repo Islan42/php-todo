@@ -1,7 +1,7 @@
 <?php
 
-function base_dir($path){
-	return BASE_DIR . $path;
+function base_path($path){
+	return BASE_PATH . $path;
 }
 
 function dd($value){
@@ -11,8 +11,10 @@ function dd($value){
 	die();
 }
 
-function view($path){
-	return require base_dir("views/{$path}");
+function view($path, $params = []){
+	extract($params);
+	
+	return require base_path("views/{$path}");
 }
 
 function abort($code = 404){

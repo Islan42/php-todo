@@ -1,3 +1,3 @@
 <?php
 
-echo 'Todos Index';
+view('todos/index.view.php', ['teste'=>'testeee']);
