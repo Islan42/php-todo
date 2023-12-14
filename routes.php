@@ -1,7 +1,6 @@
 <?php
 
 $router -> get('/', 'index.php'); //DONE
-$router -> get('/about', 'about.php'); //REMOVER
 
 $router -> get('/todos', 'todos/index.php'); //DONE
 $router -> get('/todos/create', 'todos/create.php');	//DONE
