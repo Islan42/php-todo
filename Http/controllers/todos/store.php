@@ -1,3 +1,4 @@
 <?php
 
-echo 'Todos Store';
+$name = $_POST['name'];
+dd($name);
