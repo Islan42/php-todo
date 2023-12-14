@@ -6,4 +6,6 @@
 			<li><?= $task ?></li>
 		<?php endforeach; ?>
 	</ul>
+	
+	<a href="/todos">Voltar</a>
 </body>

@@ -1,9 +1,6 @@
 <?php
 
-require base_path('Core/Database.php');
-
-$dsn = 'mysql:host=mysql;port=3306;dbname=app-db;charset=utf8';
-$db = new Database($dsn, 'root', 'password');
+$db = App::resolve('Core\Database');
 
 $todos = $db -> query('SELECT * FROM todos') -> fetchAll();
 

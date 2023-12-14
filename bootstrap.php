@@ -1,10 +1,15 @@
 <?php
 
-# Inicializar Database;
-// require base_path('Core/Database.php');
+require(base_path('Core/App.php'));
+require(base_path('Core/Container.php'));
+require base_path('Core/Database.php');
 
-// $dsn = 'mysql:host=mysql;port=3306;dbname=app-db;charset=utf8';
-// $db = new Database($dsn, 'root', 'password');
-#
+$container = new Container();
 
-// var_dump($todos ?? '')
+$container -> bind('Core\Database', function(){
+	$dsn = 'mysql:host=mysql;port=3306;dbname=app-db;charset=utf8';
+	
+	return new Core\Database($dsn, 'root', 'password');
+});
+
+App::setContainer($container);
