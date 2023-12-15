@@ -1,6 +1,5 @@
 <?php
-
-require base_path('Core/App.php');
+namespace Core;
 
 class Authenticator {
 	public function atempt($email, $password){
