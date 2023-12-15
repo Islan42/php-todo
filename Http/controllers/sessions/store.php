@@ -1,7 +1,8 @@
 <?php
 
-use Core\Validator;
+use Http\Forms\LoginForm;
 use Core\Authenticator;
+use Core\Session;
 
 //	Armazenar Email e Senha
 
@@ -16,24 +17,22 @@ use Core\Authenticator;
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$errors = [];
-
-if (! Validator::email($email)){
-	$errors['email'] = 'Formato de Email incorreto';
-}
-
-if (! Validator::string($password, 8, 255)){
-	$errors['password'] = 'A senha deve ter pelo menos 8 caracteres';
-}
-
-$auth = new Authenticator;
-
-if ($auth -> atempt($email, $password)){
-	redirect('/');
-} else {
-	$errors['email'] = 'Combinação incorreta de Email e Senha.';
-}
-
-view('sessions/create.view.php', [
-	'errors' => $errors,
+$form = LoginForm::validate([
+	'email' => $email,
+	'password' => $password,
 ]);
+
+if (! $form -> failed()){
+
+	$auth = new Authenticator;
+
+	if ($auth -> atempt($email, $password)){
+		redirect('/');
+	} else {
+		$form -> error('auth', 'Combinação incorreta de Email e Senha. Tente novamente.');
+	}
+}
+
+Session::flash('errors', $form -> errors());
+Session::flash('old', $form -> attributes());
+redirect('/login');

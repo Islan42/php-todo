@@ -3,7 +3,7 @@
 	<form action="/login" method="POST">
 		<div>
 			<label for="email">Email: </label>
-			<input type="text" name="email" id="email">
+			<input type="text" name="email" id="email" value="<?= $old['email'] ?? '' ?>">
 		</div>
 		
 		<div>
@@ -15,6 +15,7 @@
 			<div>
 				<p><?= $errors['email'] ?? '' ?></p>
 				<p><?= $errors['password'] ?? '' ?></p>
+				<p><?= $errors['auth'] ?? '' ?></p>
 			</div>
 		<?php endif?>
 		<div>

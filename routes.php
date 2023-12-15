@@ -13,5 +13,5 @@ $router -> get('/register', 'users/create.php'); //DONE
 $router -> post('/register', 'users/store.php');
 
 $router -> get('/login', 'sessions/create.php'); //DONE
-$router -> post('/login', 'sessions/store.php');	//WIP 80%
+$router -> post('/login', 'sessions/store.php');	//DONE
 $router -> post('/logout', 'sessions/destroy.php');	//DONE
