@@ -1,3 +1,8 @@
 <?php
 
-echo 'Sessions Destroy';
+use Core\Authenticator;
+
+$auth = new Authenticator;
+
+$auth -> logout();
+redirect('/');

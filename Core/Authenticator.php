@@ -9,7 +9,10 @@ class Authenticator {
 		
 		if ($user){
 			if ($user['password'] === $password){
-				// $this -> login ()
+				$this -> login ([
+					'name' => $user['name'],
+					'email' => $user['email'],
+				]);
 				return true;
 			}
 		}
@@ -18,7 +21,14 @@ class Authenticator {
 	}
 	
 	public function login($user){
+		Session::put('user', [
+			'name' => $user['name'],
+			'email' => $user['email'],
+		]);
 		
+		session_regenerate_id();
 	}
-	public function logout(){}
+	public function logout(){
+		Session::destroy();
+	}
 }

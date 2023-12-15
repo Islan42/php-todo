@@ -22,3 +22,8 @@ function abort($code = 404){
 	view("{$code}.view.php");
 	die();
 }
+
+function redirect($path){
+	header("location: $path");
+	dire();
+}

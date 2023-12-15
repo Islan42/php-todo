@@ -27,7 +27,7 @@ class Session {
 	}
 	
 	public static function destroy(){
-		static::flsuh();
+		static::flush();
 		
 		session_destroy();
 		

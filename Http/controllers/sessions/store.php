@@ -1,7 +1,8 @@
 <?php
 
-require base_path('Core/Validator.php');
-require base_path('Core/Authenticator.php');
+use Core\Validator;
+use Core\Authenticator;
+
 //	Armazenar Email e Senha
 
 //	Validar Email e Senha
@@ -23,6 +24,14 @@ if (! Validator::email($email)){
 
 if (! Validator::string($password, 8, 255)){
 	$errors['password'] = 'A senha deve ter pelo menos 8 caracteres';
+}
+
+$auth = new Authenticator;
+
+if ($auth -> atempt($email, $password)){
+	redirect('/');
+} else {
+	$errors['email'] = 'Combinação incorreta de Email e Senha.';
 }
 
 view('sessions/create.view.php', [
