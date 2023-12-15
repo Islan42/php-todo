@@ -3,12 +3,12 @@
 	<form action="/login" method="POST">
 		<div>
 			<label for="email">Email: </label>
-			<input type="text" name="email" id="email" value="<?= $old['email'] ?? '' ?>">
+			<input required type="email" name="email" id="email" value="<?= $old['email'] ?? '' ?>">
 		</div>
 		
 		<div>
-			<label for="password">Password:</label>
-			<input type="password" name="password" id="password">
+			<label for="password">Senha:</label>
+			<input required type="password" name="password" id="password">
 		</div>
 		
 		<?php if(count($errors ?? [])):?>

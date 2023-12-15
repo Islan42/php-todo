@@ -1,4 +1,5 @@
 <?php
+use Core\Authenticator;
 
 function base_path($path){
 	return BASE_PATH . $path;
@@ -26,4 +27,12 @@ function abort($code = 404){
 function redirect($path){
 	header("location: $path");
 	dire();
+}
+
+function login($user){
+	(new Authenticator) -> login($user);
+}
+
+function logout(){
+	(new Authenticator) -> logout();
 }
