@@ -1,5 +1,6 @@
 <?php
 namespace Core;
+use Core\Middleware\Middleware;
 
 class Router {
 	protected $routes = [];
@@ -23,10 +24,17 @@ class Router {
 	
 	public function route($uri, $method){
 		foreach($this -> routes as $route){
-			if($route['uri'] === $uri && $route['method'] === $method){
+			if($route['uri'] === $uri && $route['method'] === strtoupper($method)){
+				Middleware::resolve($route['middleware']);
+				
 				return require base_path('Http/controllers/' . $route['controller']);
 			}
 		}
 		abort();
+	}
+	
+	public function only($key){
+		$index = array_key_last($this -> routes);
+		$this -> routes[$index]['middleware'] = $key;
 	}
 }

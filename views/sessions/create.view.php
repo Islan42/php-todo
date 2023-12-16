@@ -11,7 +11,7 @@
 			<input required type="password" name="password" id="password">
 		</div>
 		
-		<?php if(count($errors ?? [])):?>
+		<?php if($errors ?? false):?>
 			<div>
 				<p><?= $errors['email'] ?? '' ?></p>
 				<p><?= $errors['password'] ?? '' ?></p>

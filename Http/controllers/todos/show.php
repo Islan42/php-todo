@@ -1,11 +1,10 @@
 <?php
 
+use Core\App;
+
 $id = $_GET['id'] ?? null;
 
-require base_path('Core/Database.php');
-
-$dsn = 'mysql:host=mysql;port=3306;dbname=app-db;charset=utf8';
-$db = new Database($dsn, 'root', 'password');
+$db = App::resolve('Core\Database');
 
 $todo = $db -> query('SELECT * FROM todos WHERE id = :id', [
 	'id' => $id

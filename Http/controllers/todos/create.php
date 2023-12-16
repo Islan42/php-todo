@@ -1,3 +1,10 @@
 <?php
+use Core\Session;
 
-view('todos/create.view.php');
+$errors = Session::get('errors');
+$old = Session::get('old');
+
+view('todos/create.view.php', [
+	'errors' => $errors,
+	'old' => $old,
+]);
