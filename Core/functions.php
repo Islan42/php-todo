@@ -36,3 +36,9 @@ function login($user){
 function logout(){
 	(new Authenticator) -> logout();
 }
+
+function authorize($condition, $status = 403){
+	if(! $condition){
+		abort($status);
+	}
+}

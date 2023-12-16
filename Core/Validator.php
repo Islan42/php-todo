@@ -11,4 +11,8 @@ class Validator {
 	public static function email($value){
 		return filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
+	
+	public static function json($value){
+		return ( (bool) json_decode($value) ) && ! is_numeric($value);
+	}
 }

@@ -19,7 +19,7 @@ if (! Validator::string($nameTD, 1, 255)){
 
 $db = App::resolve('Core\Database');
 
-$user = Session::get('user');	//PRECISA ADICIONAR O AUTH MIDDLEWARE
+$user = Session::get('user');
 
 $db -> query('INSERT INTO todos(name, body, user_id) VALUES(:name, :body, :userid)', [
 	'name' => $nameTD,
