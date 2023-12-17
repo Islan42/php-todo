@@ -36,4 +36,10 @@ class Database {
 	public function fetchAll(){
 		return $this -> statement -> fetchAll();
 	}
+	
+	public function findUser($email){
+		return $this -> query('SELECT * FROM users WHERE email = :email', [
+			'email' => $email,
+		]) -> find();
+	}
 }

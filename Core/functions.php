@@ -15,7 +15,10 @@ function dd($value){
 function view($path, $params = []){
 	extract($params);
 	
-	return require base_path("views/{$path}");
+	require base_path('views/partials/head.view.php');
+	require base_path('views/partials/header.view.php');
+		require base_path("views/{$path}");
+	require base_path('views/partials/footer.view.php');
 }
 
 function abort($code = 404){
@@ -26,7 +29,7 @@ function abort($code = 404){
 
 function redirect($path){
 	header("location: $path");
-	dire();
+	die();
 }
 
 function login($user){

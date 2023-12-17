@@ -1,20 +1,34 @@
 <body>
-	<h1>Criar ToDo</h1>
-	<form action="/todos" method="POST">
-		<div>
-			<label for="name">Nome dos A Fazeres:</label>
-			<input type="text" name="name" id="name" value="<?= $old['name'] ?? '' ?>">
-		</div>
+	<div class="max-w-3xl mx-auto">
+		<h2 class="text-2xl mb-2 px-1">Criar ToDo</h2>
 		
-		<?php if($errors ?? false): ?>
-			<div>
-				<p><?= $errors['name'] ?? '' ?></p>
+		<form action="/todos" method="POST" id="createForm">
+			<div class="flex items-stretch">
+				<div class="self-center">
+					<label for="name" class="px-1">Nome dos A Fazeres:</label>
+				</div>
+				
+				<div class="mx-2 flex-1">
+					<input type="text" name="name" id="name" value="<?= $old['name'] ?? '' ?>" class="w-full h-9 border p-2">
+				</div>
+				
+				<div>
+					<button class="btn mx-0 h-full">Adicionar</button>
+				</div>
 			</div>
-		<?php endif; ?>
+			
+			<?php if($errors ?? false): ?>
+				<div class="container bg-red-100 rounded-sm p-2 mt-2">
+					<ul>
+						<li class="text-red-600 text-sm"><?= $errors['name'] ?? '' ?></li>
+					</ul>
+				</div>
+			<?php endif; ?>
+		</form>
 		
-		<div>
-			<button>Adicionar</button>
+		<div class="mt-2">
+			<a href="/todos" class="btn ml-0 max-w-max">Voltar</a>
 		</div>
-	</form>
-	<a href="/todos">Voltar</a>
+	</div>
+	
 </body>

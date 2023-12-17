@@ -13,6 +13,7 @@ class Validator {
 	}
 	
 	public static function json($value){
-		return ( (bool) json_decode($value) ) && ! is_numeric($value);
+		$result = json_decode($value);
+		return ( json_last_error() === JSON_ERROR_NONE ) && ! is_numeric($value);
 	}
 }

@@ -16,4 +16,4 @@ $router -> post('/register', 'users/store.php') -> only('guest'); //DONE
 
 $router -> get('/login', 'sessions/create.php') -> only('guest'); //DONE
 $router -> post('/login', 'sessions/store.php') -> only('guest');	//DONE
-$router -> post('/logout', 'sessions/destroy.php');	//DONE
+$router -> post('/logout', 'sessions/destroy.php') -> only('auth');	//DONE
