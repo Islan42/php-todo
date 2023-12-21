@@ -1,3 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>ToDo App</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<style type="text/tailwindcss">
+		@layer components {
+			.btn {
+				@apply mx-1 p-1 bg-gray-300 hover:bg-gray-200 rounded;
+			}
+		}
+	</style>
+	
+	<script src="src/todos/show.js" type="module" defer ></script>
+	
+  </head>
+
+  <body class="max-w-6xl mx-auto h-screen flex flex-col">
+  
+<?php
+require base_path('views/partials/header.view.php');
+?>
+
 <body>
 	<div class="max-w-3xl mx-auto">
 		<h2 class="text-2xl mb-4 text-center"><?= $todo['name'] ?></h2>
@@ -35,3 +60,8 @@
 		</div>
 	</div>
 </body>
+
+
+<?php
+require base_path('views/partials/footer.view.php');
+?>

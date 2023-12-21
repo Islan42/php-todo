@@ -1,3 +1,8 @@
+<?php
+require base_path('views/partials/head.view.php');
+require base_path('views/partials/header.view.php');
+?>
+
 <body>	
 	<div class="mx-auto my-4 max-w-lg bg-white p-4 rounded-md">
 		<h2 class="text-2xl my-4 text-center font-semibold" >Faça Login</h2>
@@ -27,3 +32,7 @@
 		</form>
 	</div>
 </body>
+
+<?php
+require base_path('views/partials/footer.view.php');
+?>
