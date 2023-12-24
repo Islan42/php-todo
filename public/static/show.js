@@ -8008,14 +8008,20 @@ function InputTask({
     inputElement.value = '';
     inputElement.focus();
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
-    onSubmit: onSubmitTask
+  return /*#__PURE__*/React.createElement("div", {
+    className: "max-w-xl mx-auto"
+  }, /*#__PURE__*/React.createElement("form", {
+    onSubmit: onSubmitTask,
+    className: "flex space-x-2"
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
     placeholder: "Preciso fazer...",
-    id: "newTaskInput"
-  }), /*#__PURE__*/React.createElement("button", null, "Adicionar")), /*#__PURE__*/React.createElement("div", {
-    className: "flex space-x-2"
+    id: "newTaskInput",
+    className: "p-1 px-2 flex-1"
+  }), /*#__PURE__*/React.createElement("button", {
+    className: "rounded-sm bg-indigo-200 p-1"
+  }, "Adicionar")), /*#__PURE__*/React.createElement("div", {
+    className: "flex space-x-2 justify-center mt-3"
   }, /*#__PURE__*/React.createElement("div", {
     className: "space-x-1"
   }, /*#__PURE__*/React.createElement("input", {
@@ -8065,12 +8071,16 @@ function TaskTable({
         onDeleteTask: onDeleteTask
       });
     });
-    return /*#__PURE__*/React.createElement("ul", null, output);
+    return /*#__PURE__*/React.createElement("ul", {
+      className: "mt-4"
+    }, output);
   } else {
     const output = /*#__PURE__*/React.createElement("p", {
       className: "text-gray-500 text-center mt-4"
     }, "Nada para nada");
-    return /*#__PURE__*/React.createElement(React.Fragment, null, output);
+    return /*#__PURE__*/React.createElement("div", {
+      className: "mt-4"
+    }, output);
   }
 }
 function Task({
@@ -8090,9 +8100,11 @@ function Task({
     type: "checkbox",
     checked: task.finished,
     onChange: onCheckboxChange,
-    id: `finishedCheck-${task.id}`
+    id: `finishedCheck-${task.id}`,
+    className: "peer hidden"
   }), /*#__PURE__*/React.createElement("label", {
-    htmlFor: `finishedCheck-${task.id}`
+    htmlFor: `finishedCheck-${task.id}`,
+    className: "hover:line-through  peer-checked:text-red-600 peer-checked:hover:no-underline peer-checked:hover:text-red-500 peer-checked:hover:font-bold"
   }, `${task.id} -- ${task.task}`), /*#__PURE__*/React.createElement("button", {
     className: "text-red-400 text-sm",
     onClick: onButtonClick

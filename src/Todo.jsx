@@ -70,12 +70,12 @@ function InputTask({ filter, onFilterChange, onITButtonClick }){
 	}
 	
 	return(
-		<>
-			<form onSubmit={onSubmitTask}>
-				<input type="text" placeholder="Preciso fazer..." id="newTaskInput" />
-				<button>Adicionar</button>
+		<div className="max-w-xl mx-auto">
+			<form onSubmit={onSubmitTask} className="flex space-x-2">
+				<input type="text" placeholder="Preciso fazer..." id="newTaskInput" className="p-1 px-2 flex-1"/>
+				<button className="rounded-sm bg-indigo-200 p-1">Adicionar</button>
 			</form>
-			<div className="flex space-x-2">
+			<div className="flex space-x-2 justify-center mt-3">
 				<div className="space-x-1">
 					<input type="radio" name="filter" id="all" value="All" onChange={onRadioChange} checked={filter === 'All' ? true : false}/>
 					<label htmlFor="all" >Todos</label>
@@ -89,7 +89,7 @@ function InputTask({ filter, onFilterChange, onITButtonClick }){
 					<label htmlFor="unfinished">Em Aberto</label>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 
@@ -102,7 +102,7 @@ function TaskTable({ tasks, onTaskChange, onDeleteTask }){
 		});
 		
 		return (
-			<ul>
+			<ul className="mt-4">
 				{output}
 			</ul>
 		);
@@ -110,9 +110,9 @@ function TaskTable({ tasks, onTaskChange, onDeleteTask }){
 		const output = (<p className="text-gray-500 text-center mt-4">Nada para nada</p>);
 		
 		return (
-			<>
+			<div className="mt-4">
 				{output}
-			</>
+			</div>
 		);
 	}
 }
@@ -127,8 +127,8 @@ function Task({ task, onTaskChange, onDeleteTask }){
 	
 	return(
 		<li className="space-x-2">
-			<input type="checkbox" checked={task.finished} onChange={onCheckboxChange} id={`finishedCheck-${task.id}`} />
-			<label htmlFor={`finishedCheck-${task.id}`}>{`${task.id} -- ${task.task}`}</label>
+			<input type="checkbox" checked={task.finished} onChange={onCheckboxChange} id={`finishedCheck-${task.id}`} className="peer hidden" />
+			<label htmlFor={`finishedCheck-${task.id}`} className="hover:line-through  peer-checked:text-red-600 peer-checked:hover:no-underline peer-checked:hover:text-red-500 peer-checked:hover:font-bold">{`${task.id} -- ${task.task}`}</label>
 			<button className="text-red-400 text-sm" onClick={onButtonClick}>X</button>
 		</li>
 	);
