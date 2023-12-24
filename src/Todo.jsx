@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export default function Todo( { todos } ) {	
 	const [tasksArray, setTasksArray] = useState(JSON.parse(todos));
-	const [filterBy, setFilterBy] = useState('Finished');
+	const [filterBy, setFilterBy] = useState('All');
 	
 	const filteredTasks = tasksArray.filter((task) => filterTask(filterBy, task))
 	
@@ -18,8 +18,21 @@ export default function Todo( { todos } ) {
 		
 		setTasksArray(newArray);
 	}
-	function onInputButtonClick(){
+	function onDeleteTask(id){
+		const newArray = tasksArray.filter((task) => {
+			return task.id !== id;
+			// return task.id === id ? false : true;
+			// return task.id !== id ? true : false;
+		});
 		
+		setTasksArray(newArray);
+	}
+	function onNewTask(nome){
+		const newID = tasksArray[tasksArray.length - 1].id + 1
+		const newTask = {id: newID, task: nome, finished: false };
+		const newArray = [...tasksArray, newTask];
+		
+		setTasksArray(newArray);
 	}
 	function onFilterChange(value){
 		setFilterBy(value);
@@ -28,32 +41,43 @@ export default function Todo( { todos } ) {
 	
 	return (
 		<>
-			<InputTask onFilterChange={onFilterChange} />
-			<TaskTable tasks={filteredTasks} onTaskChange={onTaskChange} />
+			<InputTask filter={filterBy} onFilterChange={onFilterChange} onITButtonClick={onNewTask} />
+			<TaskTable tasks={filteredTasks} onTaskChange={onTaskChange} onDeleteTask={onDeleteTask} />
 		</>
 	);
 }
 
-function InputTask({ onFilterChange }){
+function InputTask({ filter, onFilterChange, onITButtonClick }){
 	function onRadioChange(event){
 		onFilterChange(event.target.value);
 	}
 	
+	function onSubmitTask(event){
+		event.preventDefault();
+		
+		const inputElement = document.getElementById('newTaskInput');
+		onITButtonClick(inputElement.value);
+		inputElement.value = '';
+		inputElement.focus();
+	}
+	
 	return(
 		<>
-			<input type="text" placeholder="Preciso fazer..." />
-			<button>Adicionar</button>
-			<div>
-				<div>
-					<input type="radio" name="filter" id="all" value="All" onChange={onRadioChange}/>
-					<label htmlFor="all">Todos</label>
+			<form onSubmit={onSubmitTask}>
+				<input type="text" placeholder="Preciso fazer..." id="newTaskInput" />
+				<button>Adicionar</button>
+			</form>
+			<div className="flex space-x-2">
+				<div className="space-x-1">
+					<input type="radio" name="filter" id="all" value="All" onChange={onRadioChange} checked={filter === 'All' ? true : false}/>
+					<label htmlFor="all" >Todos</label>
 				</div>
-				<div>
-					<input type="radio" name="filter" id="finished" value="Finished" onChange={onRadioChange} />
+				<div className="space-x-1">
+					<input type="radio" name="filter" id="finished" value="Finished" onChange={onRadioChange} checked={filter === 'Finished' ? true : false}/>
 					<label htmlFor="finished">Finalizados</label>
 				</div>
-				<div>
-					<input type="radio" name="filter" id="unfinished" value="Unfinished" onChange={onRadioChange} />
+				<div className="space-x-1">
+					<input type="radio" name="filter" id="unfinished" value="Unfinished" onChange={onRadioChange} checked={filter === 'Unfinished' ? true : false}/>
 					<label htmlFor="unfinished">Em Aberto</label>
 				</div>
 			</div>
@@ -61,11 +85,11 @@ function InputTask({ onFilterChange }){
 	);
 }
 
-function TaskTable({ tasks, onTaskChange }){	
+function TaskTable({ tasks, onTaskChange, onDeleteTask }){	
 	if (tasks.length){
 		const output = tasks.map((task) => {
 			return (
-				<Task key={task.id} task={task} onTaskChange={onTaskChange} />
+				<Task key={task.id} task={task} onTaskChange={onTaskChange} onDeleteTask={onDeleteTask} />
 			);
 		});
 		
@@ -85,15 +109,19 @@ function TaskTable({ tasks, onTaskChange }){
 	}
 }
 
-function Task({ task, onTaskChange }){
+function Task({ task, onTaskChange, onDeleteTask }){
 	function onCheckboxChange(){
 		onTaskChange(task.id);
 	}
+	function onButtonClick(){
+		onDeleteTask(task.id);
+	}	
 	
 	return(
-		<li>
-			<span>{`${task.id} -- ${task.task}`}</span>
-			<input type="checkbox" checked={task.finished} onChange={onCheckboxChange} />
+		<li className="space-x-2">
+			<input type="checkbox" checked={task.finished} onChange={onCheckboxChange} id={`finishedCheck-${task.id}`} />
+			<label htmlFor={`finishedCheck-${task.id}`}>{`${task.id} -- ${task.task}`}</label>
+			<button className="text-red-400 text-sm" onClick={onButtonClick}>X</button>
 		</li>
 	);
 }

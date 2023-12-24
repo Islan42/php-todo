@@ -7941,7 +7941,7 @@ function Todo({
   todos
 }) {
   const [tasksArray, setTasksArray] = reactExports.useState(JSON.parse(todos));
-  const [filterBy, setFilterBy] = reactExports.useState('Finished');
+  const [filterBy, setFilterBy] = reactExports.useState('All');
   const filteredTasks = tasksArray.filter(task => filterTask(filterBy, task));
   function onTaskChange(id) {
     const newArray = tasksArray.map(task => {
@@ -7952,61 +7952,107 @@ function Todo({
     });
     setTasksArray(newArray);
   }
+  function onDeleteTask(id) {
+    const newArray = tasksArray.filter(task => {
+      return task.id !== id;
+      // return task.id === id ? false : true;
+      // return task.id !== id ? true : false;
+    });
+    setTasksArray(newArray);
+  }
+  function onNewTask(nome) {
+    const newID = tasksArray[tasksArray.length - 1].id + 1;
+    const newTask = {
+      id: newID,
+      task: nome,
+      finished: false
+    };
+    const newArray = [...tasksArray, newTask];
+    setTasksArray(newArray);
+  }
   function onFilterChange(value) {
     setFilterBy(value);
   }
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(InputTask, {
-    onFilterChange: onFilterChange
+    filter: filterBy,
+    onFilterChange: onFilterChange,
+    onITButtonClick: onNewTask
   }), /*#__PURE__*/React.createElement(TaskTable, {
     tasks: filteredTasks,
-    onTaskChange: onTaskChange
+    onTaskChange: onTaskChange,
+    onDeleteTask: onDeleteTask
   }));
 }
 function InputTask({
-  onFilterChange
+  filter,
+  onFilterChange,
+  onITButtonClick
 }) {
   function onRadioChange(event) {
     onFilterChange(event.target.value);
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
+  function onSubmitTask(event) {
+    event.preventDefault();
+    const inputElement = document.getElementById('newTaskInput');
+    onITButtonClick(inputElement.value);
+    inputElement.value = '';
+    inputElement.focus();
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
+    onSubmit: onSubmitTask
+  }, /*#__PURE__*/React.createElement("input", {
     type: "text",
-    placeholder: "Preciso fazer..."
-  }), /*#__PURE__*/React.createElement("button", null, "Adicionar"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
+    placeholder: "Preciso fazer...",
+    id: "newTaskInput"
+  }), /*#__PURE__*/React.createElement("button", null, "Adicionar")), /*#__PURE__*/React.createElement("div", {
+    className: "flex space-x-2"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "space-x-1"
+  }, /*#__PURE__*/React.createElement("input", {
     type: "radio",
     name: "filter",
     id: "all",
     value: "All",
-    onChange: onRadioChange
+    onChange: onRadioChange,
+    checked: filter === 'All' ? true : false
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "all"
-  }, "Todos")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
+  }, "Todos")), /*#__PURE__*/React.createElement("div", {
+    className: "space-x-1"
+  }, /*#__PURE__*/React.createElement("input", {
     type: "radio",
     name: "filter",
     id: "finished",
     value: "Finished",
-    onChange: onRadioChange
+    onChange: onRadioChange,
+    checked: filter === 'Finished' ? true : false
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "finished"
-  }, "Finalizados")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
+  }, "Finalizados")), /*#__PURE__*/React.createElement("div", {
+    className: "space-x-1"
+  }, /*#__PURE__*/React.createElement("input", {
     type: "radio",
     name: "filter",
     id: "unfinished",
     value: "Unfinished",
-    onChange: onRadioChange
+    onChange: onRadioChange,
+    checked: filter === 'Unfinished' ? true : false
   }), /*#__PURE__*/React.createElement("label", {
     htmlFor: "unfinished"
   }, "Em Aberto"))));
 }
 function TaskTable({
   tasks,
-  onTaskChange
+  onTaskChange,
+  onDeleteTask
 }) {
   if (tasks.length) {
     const output = tasks.map(task => {
       return /*#__PURE__*/React.createElement(Task, {
         key: task.id,
         task: task,
-        onTaskChange: onTaskChange
+        onTaskChange: onTaskChange,
+        onDeleteTask: onDeleteTask
       });
     });
     return /*#__PURE__*/React.createElement("ul", null, output);
@@ -8019,16 +8065,28 @@ function TaskTable({
 }
 function Task({
   task,
-  onTaskChange
+  onTaskChange,
+  onDeleteTask
 }) {
   function onCheckboxChange() {
     onTaskChange(task.id);
   }
-  return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", null, `${task.id} -- ${task.task}`), /*#__PURE__*/React.createElement("input", {
+  function onButtonClick() {
+    onDeleteTask(task.id);
+  }
+  return /*#__PURE__*/React.createElement("li", {
+    className: "space-x-2"
+  }, /*#__PURE__*/React.createElement("input", {
     type: "checkbox",
     checked: task.finished,
-    onChange: onCheckboxChange
-  }));
+    onChange: onCheckboxChange,
+    id: `finishedCheck-${task.id}`
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: `finishedCheck-${task.id}`
+  }, `${task.id} -- ${task.task}`), /*#__PURE__*/React.createElement("button", {
+    className: "text-red-400 text-sm",
+    onClick: onButtonClick
+  }, "X"));
 }
 function filterTask(filter, task) {
   switch (filter) {
