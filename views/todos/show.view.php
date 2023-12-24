@@ -35,3 +35,10 @@
 	</div>
 	<script  src="/static/show.js" type="module" defer ></script>
 	<script src="/static/show-delete.js" type="module" defer></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", (event) => {
+			const newTaskInput = document.getElementById('newTaskInput');
+			newTaskInput.focus();
+		});
+
+	</script>
