@@ -1,9 +1,4 @@
-<?php
-require base_path('views/partials/head.view.php');
-require base_path('views/partials/header.view.php');
-?>
 
-<body>
 	<div class="max-w-3xl mx-auto">
 		<h2 class="text-2xl mb-2 px-1">Criar ToDo</h2>
 		
@@ -35,10 +30,3 @@ require base_path('views/partials/header.view.php');
 			<a href="/todos" class="btn ml-0 max-w-max">Voltar</a>
 		</div>
 	</div>
-	
-</body>
-
-
-<?php
-require base_path('views/partials/footer.view.php');
-?>

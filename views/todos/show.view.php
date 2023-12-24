@@ -1,9 +1,4 @@
-<?php
-require base_path('views/partials/head.view.php');
-require base_path('views/partials/header.view.php');
-?>
 
-<body>
 	<div class="max-w-3xl mx-auto">
 		<h2 class="text-2xl mb-4 text-center"><?= $todo['name'] ?></h2>
 		
@@ -40,9 +35,3 @@ require base_path('views/partials/header.view.php');
 		</div>
 	</div>
 	<script ></script>
-</body>
-
-
-<?php
-require base_path('views/partials/footer.view.php');
-?>
