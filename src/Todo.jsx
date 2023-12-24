@@ -21,24 +21,42 @@ export default function Todo( { todos } ) {
 	function onInputButtonClick(){
 		
 	}
-	function onFilterByChange(){
-		
+	function onFilterChange(value){
+		setFilterBy(value);
 	}
 	
 	
 	return (
 		<>
-			<InputTask />
+			<InputTask onFilterChange={onFilterChange} />
 			<TaskTable tasks={filteredTasks} onTaskChange={onTaskChange} />
 		</>
 	);
 }
 
-function InputTask(){
+function InputTask({ onFilterChange }){
+	function onRadioChange(event){
+		onFilterChange(event.target.value);
+	}
+	
 	return(
 		<>
 			<input type="text" placeholder="Preciso fazer..." />
 			<button>Adicionar</button>
+			<div>
+				<div>
+					<input type="radio" name="filter" id="all" value="All" onChange={onRadioChange}/>
+					<label htmlFor="all">Todos</label>
+				</div>
+				<div>
+					<input type="radio" name="filter" id="finished" value="Finished" onChange={onRadioChange} />
+					<label htmlFor="finished">Finalizados</label>
+				</div>
+				<div>
+					<input type="radio" name="filter" id="unfinished" value="Unfinished" onChange={onRadioChange} />
+					<label htmlFor="unfinished">Em Aberto</label>
+				</div>
+			</div>
 		</>
 	);
 }

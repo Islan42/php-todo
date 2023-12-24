@@ -7952,16 +7952,50 @@ function Todo({
     });
     setTasksArray(newArray);
   }
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(InputTask, null), /*#__PURE__*/React.createElement(TaskTable, {
+  function onFilterChange(value) {
+    setFilterBy(value);
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(InputTask, {
+    onFilterChange: onFilterChange
+  }), /*#__PURE__*/React.createElement(TaskTable, {
     tasks: filteredTasks,
     onTaskChange: onTaskChange
   }));
 }
-function InputTask() {
+function InputTask({
+  onFilterChange
+}) {
+  function onRadioChange(event) {
+    onFilterChange(event.target.value);
+  }
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
     type: "text",
     placeholder: "Preciso fazer..."
-  }), /*#__PURE__*/React.createElement("button", null, "Adicionar"));
+  }), /*#__PURE__*/React.createElement("button", null, "Adicionar"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
+    type: "radio",
+    name: "filter",
+    id: "all",
+    value: "All",
+    onChange: onRadioChange
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "all"
+  }, "Todos")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
+    type: "radio",
+    name: "filter",
+    id: "finished",
+    value: "Finished",
+    onChange: onRadioChange
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "finished"
+  }, "Finalizados")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {
+    type: "radio",
+    name: "filter",
+    id: "unfinished",
+    value: "Unfinished",
+    onChange: onRadioChange
+  }), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "unfinished"
+  }, "Em Aberto"))));
 }
 function TaskTable({
   tasks,
