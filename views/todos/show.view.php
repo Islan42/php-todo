@@ -21,10 +21,11 @@
 			</div>
 			
 			<div>
-				<form action="/todo/update" method="GET">
+				<form action="/todo/update" method="POST">
 					<input type="hidden" name="todoid" value="<?= $todo['id'] ?>">
+					<textarea name="body" id="saveInput" hidden><?= $todo['body'] ?></textarea>
 					<div>
-						<button class="btn">Editar</button>
+						<button class="btn">Salvar</button>
 					</div>
 				</form>
 			</div>

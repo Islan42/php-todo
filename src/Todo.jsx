@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function Todo( { todos } ) {	
+export default function Todo( { todos, saveInput } ) {	
 	const [tasksArray, setTasksArray] = useState(JSON.parse(todos));
 	const [filterBy, setFilterBy] = useState('All');
 	
@@ -15,8 +15,8 @@ export default function Todo( { todos } ) {
 			
 			return task;
 		});
-		
 		setTasksArray(newArray);
+		saveInputElement(newArray);
 	}
 	function onDeleteTask(id){
 		const newArray = tasksArray.filter((task) => {
@@ -26,6 +26,7 @@ export default function Todo( { todos } ) {
 		});
 		
 		setTasksArray(newArray);
+		saveInputElement(newArray);
 	}
 	function onNewTask(nome){
 		const newID = tasksArray[tasksArray.length - 1].id + 1
@@ -33,6 +34,7 @@ export default function Todo( { todos } ) {
 		const newArray = [...tasksArray, newTask];
 		
 		setTasksArray(newArray);
+		saveInputElement(newArray);
 	}
 	function onFilterChange(value){
 		setFilterBy(value);
@@ -45,6 +47,11 @@ export default function Todo( { todos } ) {
 			<TaskTable tasks={filteredTasks} onTaskChange={onTaskChange} onDeleteTask={onDeleteTask} />
 		</>
 	);
+	
+	function saveInputElement(array){
+		const arrayJSON = JSON.stringify(array);
+		saveInput.textContent = arrayJSON;
+	}
 }
 
 function InputTask({ filter, onFilterChange, onITButtonClick }){

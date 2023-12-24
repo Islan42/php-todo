@@ -7938,7 +7938,8 @@ var m = reactDomExports;
 }
 
 function Todo({
-  todos
+  todos,
+  saveInput
 }) {
   const [tasksArray, setTasksArray] = reactExports.useState(JSON.parse(todos));
   const [filterBy, setFilterBy] = reactExports.useState('All');
@@ -7951,6 +7952,7 @@ function Todo({
       return task;
     });
     setTasksArray(newArray);
+    saveInputElement(newArray);
   }
   function onDeleteTask(id) {
     const newArray = tasksArray.filter(task => {
@@ -7959,6 +7961,7 @@ function Todo({
       // return task.id !== id ? true : false;
     });
     setTasksArray(newArray);
+    saveInputElement(newArray);
   }
   function onNewTask(nome) {
     const newID = tasksArray[tasksArray.length - 1].id + 1;
@@ -7969,6 +7972,7 @@ function Todo({
     };
     const newArray = [...tasksArray, newTask];
     setTasksArray(newArray);
+    saveInputElement(newArray);
   }
   function onFilterChange(value) {
     setFilterBy(value);
@@ -7982,6 +7986,10 @@ function Todo({
     onTaskChange: onTaskChange,
     onDeleteTask: onDeleteTask
   }));
+  function saveInputElement(array) {
+    const arrayJSON = JSON.stringify(array);
+    saveInput.textContent = arrayJSON;
+  }
 }
 function InputTask({
   filter,
@@ -8102,9 +8110,12 @@ function filterTask(filter, task) {
 
 const rootElement = document.getElementById('app');
 const tasks = rootElement.textContent.trim();
+const saveInput = document.getElementById('saveInput');
+console.log(saveInput);
 
 // Render your React component instead
 const root = createRoot(rootElement);
 root.render( /*#__PURE__*/React.createElement(Todo, {
-  todos: tasks
+  todos: tasks,
+  saveInput: saveInput
 }));
