@@ -14,7 +14,7 @@ $todo = $db -> query('SELECT * FROM todos WHERE id = :id', [
 
 authorize($todo['user_id'] === $userid);
 
-$todo['body'] = json_decode($todo['body']);
+// $todo['body'] = json_decode($todo['body']);
 
 view('todos/show.view.php', [
 	'todo' => $todo,

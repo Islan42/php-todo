@@ -2,12 +2,8 @@
 	<div class="max-w-3xl mx-auto">
 		<h2 class="text-2xl mb-4 text-center"><?= $todo['name'] ?></h2>
 		
-		<div>
-			<ul>
-				<?php foreach($todo['body'] as $task): ?>
-					<li class="text-red-400"><?= $task ?></li>
-				<?php endforeach; ?>
-			</ul>
+		<div id="app" >
+			<?= $todo['body'] ?>
 		</div>
 		
 		<div class="flex items-stretch mt-4">
@@ -34,4 +30,4 @@
 			</div>
 		</div>
 	</div>
-	<script ></script>
+	<script  src="/static/show.js" type="module" defer ></script>

@@ -1,9 +1,11 @@
 import React, { StrictMode } from "react";
 import { createRoot } from 'react-dom/client';
 
-// Clear the existing HTML content
-document.body.innerHTML = '<div id="app"></div>';
+import App from './App.jsx';
+const rootElement = document.getElementById('app');
+const tasks = rootElement.textContent.trim();
 
 // Render your React component instead
-const root = createRoot(document.getElementById('app'));
-root.render(<h1>Hello, There!</h1>);
+const root = createRoot(rootElement);
+root.render(<App todos={tasks}/>);
+

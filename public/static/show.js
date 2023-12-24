@@ -7937,9 +7937,37 @@ var m = reactDomExports;
   };
 }
 
-// Clear the existing HTML content
-document.body.innerHTML = '<div id="app"></div>';
+function App({
+  todos
+}) {
+  const tasksArray = JSON.parse(todos);
+  let listToShow = /*#__PURE__*/React.createElement("p", null, "Nada para nada.");
+  if (tasksArray.length) {
+    listToShow = tasksArray.map(task => {
+      return /*#__PURE__*/React.createElement(Task, {
+        key: task.id,
+        task: task
+      });
+    });
+  }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    placeholder: "Preciso fazer..."
+  }), /*#__PURE__*/React.createElement("button", null, "Adicionar"), /*#__PURE__*/React.createElement("ul", null, listToShow));
+}
+function Task({
+  task
+}) {
+  return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", null, `${task.id} -- ${task.task}`), /*#__PURE__*/React.createElement("input", {
+    type: "checkbox"
+  }));
+}
+
+const rootElement = document.getElementById('app');
+const tasks = rootElement.textContent.trim();
 
 // Render your React component instead
-const root = createRoot(document.getElementById('app'));
-root.render( /*#__PURE__*/React.createElement("h1", null, "Hello, There!"));
+const root = createRoot(rootElement);
+root.render( /*#__PURE__*/React.createElement(App, {
+  todos: tasks
+}));

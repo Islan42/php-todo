@@ -19,12 +19,12 @@ if (! Validator::string($nameTD, 1, 255)){
 
 $db = App::resolve('Core\Database');
 
-$user = Session::get('user');
+$userid = Session::userID();
 
 $db -> query('INSERT INTO todos(name, body, user_id) VALUES(:name, :body, :userid)', [
 	'name' => $nameTD,
 	'body' => '[]',
-	'userid' => $user['id'],
+	'userid' => $userid,
 ]);
 
 redirect('/todos'); //REDIRECIONAR PARA A PRÓPRIA NOTA
