@@ -7937,30 +7937,75 @@ var m = reactDomExports;
   };
 }
 
-function App({
+function Todo({
   todos
 }) {
-  const tasksArray = JSON.parse(todos);
-  let listToShow = /*#__PURE__*/React.createElement("p", null, "Nada para nada.");
-  if (tasksArray.length) {
-    listToShow = tasksArray.map(task => {
-      return /*#__PURE__*/React.createElement(Task, {
-        key: task.id,
-        task: task
-      });
+  const [tasksArray, setTasksArray] = reactExports.useState(JSON.parse(todos));
+  const [filterBy, setFilterBy] = reactExports.useState('Finished');
+  const filteredTasks = tasksArray.filter(task => filterTask(filterBy, task));
+  function onTaskChange(id) {
+    const newArray = tasksArray.map(task => {
+      if (task.id === id) {
+        task.finished = !task.finished;
+      }
+      return task;
     });
+    setTasksArray(newArray);
   }
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(InputTask, null), /*#__PURE__*/React.createElement(TaskTable, {
+    tasks: filteredTasks,
+    onTaskChange: onTaskChange
+  }));
+}
+function InputTask() {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
     type: "text",
     placeholder: "Preciso fazer..."
-  }), /*#__PURE__*/React.createElement("button", null, "Adicionar"), /*#__PURE__*/React.createElement("ul", null, listToShow));
+  }), /*#__PURE__*/React.createElement("button", null, "Adicionar"));
+}
+function TaskTable({
+  tasks,
+  onTaskChange
+}) {
+  if (tasks.length) {
+    const output = tasks.map(task => {
+      return /*#__PURE__*/React.createElement(Task, {
+        key: task.id,
+        task: task,
+        onTaskChange: onTaskChange
+      });
+    });
+    return /*#__PURE__*/React.createElement("ul", null, output);
+  } else {
+    const output = /*#__PURE__*/React.createElement("p", {
+      className: "text-gray-500 text-center mt-4"
+    }, "Nada para nada");
+    return /*#__PURE__*/React.createElement(React.Fragment, null, output);
+  }
 }
 function Task({
-  task
+  task,
+  onTaskChange
 }) {
+  function onCheckboxChange() {
+    onTaskChange(task.id);
+  }
   return /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", null, `${task.id} -- ${task.task}`), /*#__PURE__*/React.createElement("input", {
-    type: "checkbox"
+    type: "checkbox",
+    checked: task.finished,
+    onChange: onCheckboxChange
   }));
+}
+function filterTask(filter, task) {
+  switch (filter) {
+    case 'All':
+      return true;
+    //Apenas por clareza
+    case 'Finished':
+      return task.finished;
+    case 'Unfinished':
+      return !task.finished;
+  }
 }
 
 const rootElement = document.getElementById('app');
@@ -7968,6 +8013,6 @@ const tasks = rootElement.textContent.trim();
 
 // Render your React component instead
 const root = createRoot(rootElement);
-root.render( /*#__PURE__*/React.createElement(App, {
+root.render( /*#__PURE__*/React.createElement(Todo, {
   todos: tasks
 }));
