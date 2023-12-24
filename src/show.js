@@ -7,7 +7,6 @@ const rootElement = document.getElementById('app');
 const tasks = rootElement.textContent.trim();
 
 const saveInput = document.getElementById('saveInput');
-console.log(saveInput);
 
 // Render your React component instead
 const root = createRoot(rootElement);

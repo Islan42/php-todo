@@ -7964,7 +7964,7 @@ function Todo({
     saveInputElement(newArray);
   }
   function onNewTask(nome) {
-    const newID = tasksArray[tasksArray.length - 1].id + 1;
+    const newID = tasksArray[tasksArray.length - 1] ? tasksArray[tasksArray.length - 1].id + 1 : 0;
     const newTask = {
       id: newID,
       task: nome,
@@ -8001,6 +8001,8 @@ function InputTask({
   }
   function onSubmitTask(event) {
     event.preventDefault();
+
+    //Prevenir de colocar um input vazio -> Retornando cedo
     const inputElement = document.getElementById('newTaskInput');
     onITButtonClick(inputElement.value);
     inputElement.value = '';
@@ -8111,7 +8113,6 @@ function filterTask(filter, task) {
 const rootElement = document.getElementById('app');
 const tasks = rootElement.textContent.trim();
 const saveInput = document.getElementById('saveInput');
-console.log(saveInput);
 
 // Render your React component instead
 const root = createRoot(rootElement);
