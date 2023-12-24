@@ -25,4 +25,4 @@ if (! $form -> failed()){
 
 Session::flash('errors', $form -> errors());
 Session::flash('old', $form -> attributes());
-redirect('/login');
+redirect('/');

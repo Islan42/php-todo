@@ -12,7 +12,6 @@ class Authenticator {
 				$this -> login ([
 					'name' => $user['name'],
 					'email' => $user['email'],
-					'id' => $user['id'],
 				]);
 				return true;
 			}
@@ -25,7 +24,6 @@ class Authenticator {
 		Session::put('user', [
 			'name' => $user['name'],
 			'email' => $user['email'],
-			'id' => $user['id'],
 		]);
 		
 		session_regenerate_id();
