@@ -1,4 +1,4 @@
 
-	<h1>Página não encontrada</h1>
+	<h1 class="text-2xl font-bold mb-4">Página não encontrada</h1>
 	<a href="/">Voltar</a>
 	

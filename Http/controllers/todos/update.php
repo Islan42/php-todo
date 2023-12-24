@@ -7,7 +7,7 @@ use Core\App;
 $todoid = $_POST['todoid'];
 $body = $_POST['body'];
 
-$userid = Session::get('user')['id'];
+$userid = Session::userID();
 
 //Validar
 if (! Validator::json($body) ){

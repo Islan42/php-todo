@@ -1,12 +1,3 @@
-<?php
-require base_path('views/partials/head.view.php');
-require base_path('views/partials/header.view.php');
-?>
-<body>
-	<h1>Página não encontrada</h1>
-	<a href="/">Voltar</a>
-</body>
 
-<?php
-require base_path('views/partials/footer.view.php');
-?>
+	<h1 class="text-2xl font-bold mb-4">Acesso negado</h1>
+	<a href="/">Voltar</a>

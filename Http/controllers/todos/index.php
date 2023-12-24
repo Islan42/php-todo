@@ -2,7 +2,7 @@
 use Core\App;
 use Core\Session;
 
-$userid = Session::get('user')['id'];
+$userid = Session::userID();
 $db = App::resolve('Core\Database');
 
 $todos = $db -> query('SELECT * FROM todos WHERE user_id = :userid', [

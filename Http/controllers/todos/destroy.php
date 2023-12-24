@@ -4,7 +4,7 @@ use Core\App;
 use Core\Session;
 
 $todoid = $_POST['todoid'];
-$userid = Session::get('user')['id'];
+$userid = Session::userID();
 
 $db = App::resolve('Core\Database');
 
