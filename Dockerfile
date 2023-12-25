@@ -8,8 +8,3 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 # Instalar Extensão PDO
 RUN docker-php-ext-install pdo pdo_mysql
-
-# Instalar NODE + NPM
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-RUN nvm install --lts

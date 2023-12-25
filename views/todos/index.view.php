@@ -5,7 +5,7 @@
 		<div class="my-4">
 			<?php foreach ($todos as $todo) : ?>
 				<p class="my-1">
-					<a href="/todo?id=<?= $todo['id'] ?>" class="text-blue-500 hover:underline"> <?= $todo['name'] ?> </a>
+					<a href="/todo?id=<?= $todo['id'] ?>" class="text-blue-500 hover:underline"> <?= htmlspecialchars($todo['name']) ?> </a>
 				</p>
 			<?php endforeach ; ?>
 		</div>
