@@ -27,7 +27,7 @@
 			<?php endif?>
 			
 			<div>
-				<button class="btn mx-0 my-4 w-full h-9 font-semibold bg-emerald-300 hover:bg-emerald-400">Registrar</button>
+				<button class="btn mx-0 my-4 w-full h-9 font-semibold bg-emerald-400 hover:bg-emerald-500">Registrar</button>
 			</div>
 		</form>
 	</div>

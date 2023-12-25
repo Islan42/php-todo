@@ -1,20 +1,30 @@
 		<header>
-			<nav class="bg-red-300 px-2 py-2 flex rounded text-lg font-medium">
-				<div class="flex-1 mx-2">
-					<a href="/" class="mx-1">Home</a>
+			<nav class="bg-red-300 px-2 flex items-stretch rounded text-lg font-medium">
+				<div class="my-2 h-10  flex-1  flex  space-x-2 ">
+					<div class="flex items-center  max-w-fit  hover:text-gray-500 hover:bg-red-900/10">
+						<a href="/" class="px-2">Home</a>
+					</div>
 					<?php if( $_SESSION['user'] ?? false ): ?>
-						<a href="/todos" class="mx-1">ToDos</a>
+						<div class="flex items-center  hover:text-gray-500 hover:bg-red-900/10">
+							<a href="/todos" class="px-2">ToDos</a>
+						</div>
 					<?php endif; ?>					
 				</div>
 				
-				<div class="flex-1 max-w-max mx-2">
+				<div class="my-2  flex  space-x-2">
 					<?php if( ! ($_SESSION['user'] ?? false) ): ?>
-						<a href="/register" class="mx-1">Registrar</a>
-						<a href="/login" class="mx-1">Login</a>
+						<div class="h-full  flex items-center  hover:text-emerald-600 hover:bg-red-900/10">
+							<a href="/register" class="mx-1">Registrar</a>
+						</div>
+						<div class="h-full  flex items-center  hover:text-indigo-500 hover:bg-red-900/10">
+							<a href="/login" class="mx-1">Login</a>
+						</div>
 					<?php else: ?>
-						<form action="/logout" method="POST">
-							<button type="submit">Logout</button>
-						</form>
+						<div class="h-full  px-2  flex items-center  hover:text-red-600 hover:bg-red-900/10">
+							<form action="/logout" method="POST">
+								<button type="submit" class="">Logout</button>
+							</form>
+						</div>
 					<?php endif; ?>
 				</div>
 			</nav>
