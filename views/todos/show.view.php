@@ -33,8 +33,8 @@
 		
 		<div id="aviso-root"></div>
 	</div>
-	<script  src="/static/show.js" type="module" defer ></script>
-	<script src="/static/show-delete.js" type="module" defer></script>
+	<script  src="/static/js/todos/show-app.js" type="module" defer ></script>
+	<script src="/static/js/todos/show-delete.js" type="module" defer></script>
 	<script>
 		document.addEventListener("DOMContentLoaded", (event) => {
 			const newTaskInput = document.getElementById('newTaskInput');

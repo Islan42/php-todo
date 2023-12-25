@@ -4,9 +4,9 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 
 export default {
-	input: 'src/show.js',
+	input: 'src/todos/show-app.js',
 	output: {
-		file: 'public/static/show.js',
+		file: 'public/static/js/todos/show-app.js',
 		format: 'es'
 	},
 	plugins: [
