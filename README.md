@@ -15,8 +15,3 @@ Essa aplicação usa PHP, ApacheHttpd e MySQL no backending, por isso incluí um
 3. npm install
 4. npm run build
 5. docker compose run -d
-
-
-## A FAZER
-
-* Adicionar HTML Special Chars

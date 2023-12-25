@@ -8,7 +8,6 @@ $router -> post('/todos', 'todos/store.php') -> only('auth');	//DONE
 
 $router -> get('/todo', 'todos/show.php') -> only('auth'); //DONE
 $router -> post('/todo/delete', 'todos/destroy.php') -> only('auth');	//DONE
-$router -> get('/todo/update', 'todos/edit.php') -> only('auth');	//DONE
 $router -> post('/todo/update', 'todos/update.php') -> only('auth');	//DONE
 
 $router -> get('/register', 'users/create.php') -> only('guest'); //DONE
