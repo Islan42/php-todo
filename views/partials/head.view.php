@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>ToDo App</title>
+	<title>A Fazeres</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	<style type="text/tailwindcss">
 		@layer components {
