@@ -8001,12 +8001,13 @@ function InputTask({
   }
   function onSubmitTask(event) {
     event.preventDefault();
-
-    //Prevenir de colocar um input vazio -> Retornando cedo
     const inputElement = document.getElementById('newTaskInput');
+    inputElement.focus();
+    if (!inputElement.value) {
+      return;
+    }
     onITButtonClick(inputElement.value);
     inputElement.value = '';
-    inputElement.focus();
   }
   return /*#__PURE__*/React.createElement("div", {
     className: "max-w-xl mx-auto"

@@ -62,11 +62,15 @@ function InputTask({ filter, onFilterChange, onITButtonClick }){
 	function onSubmitTask(event){
 		event.preventDefault();
 		
-		//Prevenir de colocar um input vazio -> Retornando cedo
 		const inputElement = document.getElementById('newTaskInput');
+		inputElement.focus();
+		
+		if(! inputElement.value){
+			return;
+		}
+		
 		onITButtonClick(inputElement.value);
 		inputElement.value = '';
-		inputElement.focus();
 	}
 	
 	return(

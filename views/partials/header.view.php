@@ -30,4 +30,4 @@
 			</nav>
 		</header>
 
-		<main class="mt-2 bg-gray-100 p-2 flex-1">
+		<main class="mt-2 bg-slate-100 p-2 flex-1">
