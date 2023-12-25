@@ -1,4 +1,4 @@
-Criei este website com o propósito de aplicar os conhecimentos obtidos ao concluir o curso [Laracasts PHP For Beginners]()https://laracasts.com/series/php-for-beginners-2023-edition e extendê-los usando React e Tailwindcss. Também foi um desafio aprender a usar o Docker corretamente junto com o ApacheHttpd, o que me proporcionou umas dores de cabeça, mas tamo aí.
+Criei este website com o propósito de aplicar os conhecimentos obtidos ao concluir o curso [Laracasts PHP For Beginners](https://laracasts.com/series/php-for-beginners-2023-edition) e extendê-los usando React e Tailwindcss. Também foi um desafio aprender a usar o Docker corretamente junto com o ApacheHttpd, o que me proporcionou umas dores de cabeça, mas tamo aí.
 
 Essa aplicação usa PHP, ApacheHttpd e MySQL no backending, por isso incluí um DockerComposeFile e um Dockerfile.
 
