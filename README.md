@@ -9,6 +9,7 @@ Essa aplicação usa PHP, ApacheHttpd e MySQL no backending, por isso incluí um
 - DockerCLI
 - npm
 
+### Passo a Passo
 
 1. Clone o repositório
 2. CD para o diretório
