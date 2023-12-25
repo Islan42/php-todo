@@ -11,7 +11,7 @@ $userid = Session::userID();
 
 //Validar
 if (! Validator::json($body) ){
-	redirect("/todo/update?todoid={$todoid}");
+	redirect("/todo?id={$todoid}");
 }
 
 //Autorizar
